@@ -1,0 +1,23 @@
+2024-05-15
+----------
+Nils Lindstrom, Connor
+
+kidney development, nephron formation
+stem cells on the outside, develop inward
+relatively well-known development tree, 5 lineages
+collecting duct, interstitium, vasculature
+
+sent paired samples to seqFISH (spatial genomics), Xenium
+Xenium failed
+227 genes
+two timepoints: wk 13, 16.5
+clustered together, seems to work for identification
+
+there's a Seurat function for "mapping RNAseq to spatial data"
+Gage Crump's lab used it
+
+Kidney Cell Explorer is a similar project
+Human Nephrogenesis Atlas another
+
+baseMEMOIR (prev: intMEMOIR) system for tracking lineages in cells
+
