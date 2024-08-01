@@ -1,7 +1,10 @@
+
+source('setup.R')
+
 require(StabMap)
-
-
 # integrate dissociated scRNAseq data with ROI1 spatial data
+
+all(rownames(roi1) == rownames(roi2))
 
 # all genes or just most variable genes?
 # check: I think MARCHF11 (spatial) = MARCH11 (RNA). Have same NCBI gene ID
@@ -11,24 +14,45 @@ keep <- which(rowData(sce)$binomial_deviance >= sort(rowData(sce)$binomial_devia
                   rownames(sce) %in% rownames(roi1))
 
 assay_list <- list(RNA = assay(sce,'logcounts')[keep,],
-                   spatial = assay(roi1,'logcounts'))
+                   roi1 = assay(roi1,'logcounts'),
+                   roi2 = assay(roi2,'logcounts'))
 
 mosaicDataUpSet(assay_list, plot = FALSE)
 
-sm <- stabMap(assay_list, reference_list = c("RNA"),
-              suppressMessages = FALSE, maxFeatures = 2000,
-              plot = FALSE)
+# get joint embedding
+stab <- stabMap(assay_list, reference_list = c("RNA"),
+                suppressMessages = FALSE, maxFeatures = nrow(assay_list$RNA),
+                plot = FALSE)
 
-mod <- factor(rep(c('RNA','spatial'), times=c(ncol(assay_list$RNA),ncol(assay_list$spatial))))
+mod <- factor(rep(c('RNA','roi1','roi2'),
+                  times = c(ncol(assay_list$RNA), ncol(assay_list$roi1), ncol(assay_list$roi2))))
 
-umap <- uwot::umap(sm)
+umap <- uwot::umap(stab)
 
 ord <- sample(nrow(umap))
 
-plot(umap[ord,], asp=1, col = alpha(brewer.pal(4,'Set1')[1:2],.4)[mod][ord])
+
+layout(matrix(1:4,2,2,byrow = TRUE))
+plot(umap[ord,], asp=1, col = alpha(brewer.pal(4,'Set1')[1:3],.4)[mod][ord])
 
 plot(range(umap[,1]),range(umap[,2]), asp=1, col='white')
 points(umap[which(mod=='RNA'), ], col=alpha(brewer.pal(9,'Set1')[1],.4))
 
 plot(range(umap[,1]),range(umap[,2]), asp=1, col='white')
-points(umap[which(mod=='spatial'), ], col=alpha(brewer.pal(9,'Set1')[2],.4))
+points(umap[which(mod=='roi1'), ], col=alpha(brewer.pal(9,'Set1')[2],.4))
+
+plot(range(umap[,1]),range(umap[,2]), asp=1, col='white')
+points(umap[which(mod=='roi2'), ], col=alpha(brewer.pal(9,'Set1')[3],.4))
+
+
+
+# impute spatial data (get imputed signal for all missing genes)
+imp <- imputeEmbedding(
+    assay_list,
+    stab,
+    reference = colnames(assay_list[["RNA"]]),
+    query = c(colnames(assay_list$roi1),colnames(assay_list$roi2)))
+
+
+
+

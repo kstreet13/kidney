@@ -17,11 +17,12 @@ roi1 <- readRDS('data/roi1.rds')
 roi1 <- SingleCellExperiment(assays = list(counts = t(roi1$counts)), colData = roi1$coords)
 assay(roi1,'logcounts') <- log1p(t(t(counts(roi1)) / colSums(counts(roi1)))*1000)
 assay(roi1,'logcounts')[is.na(assay(roi1,'logcounts'))] <- 0
+colnames(roi1) <- paste0('roi1-', colnames(roi1))
 roi2 <- readRDS('data/roi2.rds')
 roi2 <- SingleCellExperiment(assays = list(counts = t(roi2$counts)), colData = roi2$coords)
 assay(roi2,'logcounts') <- log1p(t(t(counts(roi2)) / colSums(counts(roi2)))*1000)
 assay(roi2,'logcounts')[is.na(assay(roi2,'logcounts'))] <- 0
-
+colnames(roi2) <- paste0('roi2-', colnames(roi2))
 
 
 
