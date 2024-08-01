@@ -46,6 +46,11 @@ points(umap[which(mod=='roi2'), ], col=alpha(brewer.pal(9,'Set1')[3],.4))
 
 
 
+plot(range(umap[,1]),range(umap[,2]), asp=1, col='white')
+points(umap[which(mod=='RNA'), ], col=colorby(assay(sce,'logcounts')['MAFB',]))
+
+
+
 # impute spatial data (get imputed signal for all missing genes)
 imp <- imputeEmbedding(
     assay_list,

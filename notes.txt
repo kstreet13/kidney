@@ -21,3 +21,18 @@ Human Nephrogenesis Atlas another
 
 baseMEMOIR (prev: intMEMOIR) system for tracking lineages in cells
 
+
+2024-08-01
+----------
+Nils has been comparing Spatial Genomics to Xenium
+SG has higher resolution, more dynamic range
+Kidney has nice, cleanly separated structures that can be used to double check imputed values
+*** Check imputed vs. actual values
+Next step will be ligand-receptor interaction analysis (notch, FGF)
+
+
+
+
+
+
+
