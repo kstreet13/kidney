@@ -32,7 +32,27 @@ Next step will be ligand-receptor interaction analysis (notch, FGF)
 
 
 
+2024-08-12
+----------
+need to reduce number of genes to be predicted
+include: 
+ - 2000 most variable, 
+ - ~250 from spatial, 
+ - TFs from paper
+ - L-R pair genes from CellChat
+paper: "Comparative single-cell analyses identify shared and divergent features of human and mouse kidney development" has links to two lists of TFs, refs 116 (mouse) and 117 (human, George Church) 
+~1500 genes each
+Human paper: A comprehensive library of human transcription factors for cell fate engineering. Nat. Biotechnol.
+CellChat has list of L-R pairs that should also be included
+WNT11, WNT9B, WNT4; latter two are interesting L-R pair
+HNF4A+, JAG1+, FGF8-, BMP7, BMP4+
 
 
+
+2024-08-26
+----------
+WNT signaling creates polarity, asymmetry -> nephron formation
+podocytes express NPHS2 very distinctly and PTPRO or PTPRQ
+why are we so bad at predicting expression?
 
 
