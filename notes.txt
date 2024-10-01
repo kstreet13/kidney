@@ -56,3 +56,23 @@ podocytes express NPHS2 very distinctly and PTPRO or PTPRQ
 why are we so bad at predicting expression?
 
 
+
+2024-09-09
+----------
+They will send:
+ - new multi-ome Suerat object (snRNAseq, scATACseq, long RNA seq for isoforms)
+ - coordinates of two well-understood gene profiles
+ - informative genes
+I send them:
+ - stabmap integration for RNA+ROI1+ROI2
+
+
+
+2024-10-01
+----------
+Andrew, Connor
+Andrew running SC3, taking time
+talking about transferring pseudotime/labels
+Andrew suggested Seurat CCA for integration (replacing StabMap)
+Could also run Slingshot in integrated space and then project spatial cells (instead of imputing by KNN)
+
