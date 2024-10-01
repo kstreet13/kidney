@@ -2,13 +2,15 @@ require(Seurat)
 seu <- readRDS('data/MergeOfKidneysv2.rds')
 require(SingleCellExperiment)
 require(scuttle)
+require(scry)
 sce <- as.SingleCellExperiment(seu)
 rm(seu)
 assay(sce,'logcounts') <- log1p(t(t(counts(sce)) / colSums(counts(sce)))*1000)
 rownames(sce) <- make.names(rownames(sce)) # spatial gene names will be adjusted like this on import, so it's easier this way
 # require(scry)
-# sce <- devianceFeatureSelection(sce, batch = factor(sce$orig.ident))
-HVGs <- readRDS('data/deviance_top2k.rds')
+sce <- devianceFeatureSelection(sce, batch = factor(sce$orig.ident))
+HVGs <- rownames(sce)[which(rowData(sce)$binomial_deviance >= sort(rowData(sce)$binomial_deviance, decreasing = TRUE)[2000])]
+# HVGs <- readRDS('data/deviance_top2k.rds')
 
 roi1 <- readRDS('data/roi1.rds')
 roi1 <- SingleCellExperiment(assays = list(counts = t(roi1$counts)), colData = roi1$coords)
@@ -26,9 +28,9 @@ keep <- which(rownames(sce) %in% HVGs |
                   rownames(sce) %in% TFs |
                   rownames(sce) %in% LRs)
 
-# train = 1:240, test = 241:246
+# train = 7:246, test = 1:6
 assay_list <- list(RNA = assay(sce,'logcounts')[keep, ],
-                   roi1 = assay(roi1,'logcounts')[1:240, ])
+                   roi1 = assay(roi1,'logcounts')[7:246, ])
 
 rm(sce, TFs, LRs, HVGs, keep)
 gc()
@@ -47,8 +49,7 @@ imp.i <- imputeEmbedding(
     stab,
     reference = colnames(assay_list[["RNA"]]),
     query = colnames(assay_list$roi1)[1:1000])
-imp <- imp.i$RNA[rownames(roi1)[241:246], ]
-
+imp <- imp.i$RNA[rownames(roi1)[1:6], ]
 for(i in 2:192){
     print(i)
     imp.i <- imputeEmbedding(
@@ -56,8 +57,15 @@ for(i in 2:192){
         stab,
         reference = colnames(assay_list[["RNA"]]),
         query = colnames(assay_list$roi1)[(1000*i-999):(1000*i)])
-    imp <- cbind(imp, imp.i$RNA[rownames(roi1)[241:246], ])
+    imp <- cbind(imp, imp.i$RNA[rownames(roi1)[1:6], ])
 }
+imp.i <- imputeEmbedding(
+    assay_list,
+    stab,
+    reference = colnames(assay_list[["RNA"]]),
+    query = colnames(assay_list$roi1)[192001:192255])
+imp <- cbind(imp, imp.i$RNA[rownames(roi1)[1:6], ])
+
 
 
 
