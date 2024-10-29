@@ -76,3 +76,26 @@ talking about transferring pseudotime/labels
 Andrew suggested Seurat CCA for integration (replacing StabMap)
 Could also run Slingshot in integrated space and then project spatial cells (instead of imputing by KNN)
 
+
+2024-10-22
+----------
+Andrew, Connor, Michael
+integration was done across samples
+Andrew re-ran analysis on subset (remove low-quality and cells not on main trajectory) using SCT and no integration
+probably don't need integration
+CITED1 and SIX1 mark progenitors
+Michael will take over analysis from Andrew
+go back to full data, check for doublets, remove them from Andrew's subset
+run Totem/Slingshot on subset
+map to spatial
+
+
+
+2024-10-29
+----------
+Connor, Michael
+Connor: intro to kidney development, script for visualizing marker genes from Seurat object
+Michael will run scDblFinder on full data, visualize on Andrew's subset
+
+
+

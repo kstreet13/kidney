@@ -45,7 +45,7 @@ ord <- sample(nrow(umap))
 
 
 layout(matrix(1:4,2,2,byrow = TRUE))
-plot(umap[ord,], asp=1, col = alpha(brewer.pal(4,'Set1')[1:3],.4)[mod][ord], main='Combined')
+plot(umap[ord,], asp=1, col = alpha(brewer.pal(4,'Set1')[1:3],.4)[mod][ord], main='Combined', pch=16)
 
 plot(range(umap[,1]),range(umap[,2]), asp=1, col='white', main = 'scRNA-seq')
 points(umap[which(mod=='RNA'), ], col=alpha(brewer.pal(9,'Set1')[1],.4))
