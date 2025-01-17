@@ -99,3 +99,10 @@ Michael will run scDblFinder on full data, visualize on Andrew's subset
 
 
 
+2024-12-03
+----------
+Connor, Lola
+Connor will look at spatial integration data, get it ready for next rotation
+
+
+
