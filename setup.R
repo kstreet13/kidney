@@ -10,7 +10,6 @@ rownames(sce) <- make.names(rownames(sce)) # spatial gene names will be adjusted
 require(scry)
 sce <- devianceFeatureSelection(sce, batch = factor(sce$orig.ident))
 
-
 # plot(reducedDim(sce,'UMAP'), asp=1,
 #      col=colorby(assay(sce,'logcounts')['MARCH11',]))
 
