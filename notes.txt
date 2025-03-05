@@ -111,6 +111,14 @@ Connor will look at spatial integration data, get it ready for next rotation
 Nils, Connor, Lola, Victor
 
 
+2025-03-05
+----------
+Connor, Lola, Victor
+Overview of plan for mapping pseudotime onto spatial
+Victor has run stabmap
+
+
+
 
 
 
