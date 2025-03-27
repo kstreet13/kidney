@@ -118,6 +118,24 @@ Overview of plan for mapping pseudotime onto spatial
 Victor has run stabmap
 
 
+2025-03-19
+----------
+figure 1:
+overview
+spatial transcriptomics + scMultiome UMAP
+figure 2:
+cell types in space
+macro
+overall spatial expression patterns
+different stages of development
+5 super clear genes
+5 clear imputed genes
+figure 3:
+developmental trajectories in multiome and spatial
+3 or 4:
+incorporate ATAC
+peak accessibility as function of PT
+Want to go back and re-run trajectory inference with combined RNA and ATAC
 
 
 
