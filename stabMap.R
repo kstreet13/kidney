@@ -41,8 +41,10 @@ mod <- factor(rep(c('RNA','roi1','roi2'),
 
 umap <- uwot::umap(stab)
 
-ord <- sample(nrow(umap))
+# stab <- list(stab = stab, mod = mod, umap = umap)
+# saveRDS(stab, file='data/stabMap_results.rds')
 
+ord <- sample(nrow(umap))
 
 layout(matrix(1:4,2,2,byrow = TRUE))
 plot(umap[ord,], asp=1, col = alpha(brewer.pal(4,'Set1')[1:3],.4)[mod][ord], main='Combined', pch=16)
