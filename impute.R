@@ -35,19 +35,19 @@ imp1 <- apply(knn1$index, 1, function(idx){
 })
 
 
+knn2 <- queryKNN(X = stab$stab[which(stab$mod=='RNA'), ],
+                 query = stab$stab[which(stab$mod=='roi2'), ],
+                 k = 3, get.distance = FALSE)
+imp2 <- apply(knn2$index, 1, function(idx){
+    rowMeans(assay_list[['RNA']][,idx])
+})
 
-# impute spatial data (get imputed signal for all missing genes)
-imp1 <- imputeEmbedding(
-    assay_list[c('RNA','roi1')],
-    stab$stab[which(stab$mod %in% c('RNA','roi1')),],
-    reference = colnames(assay_list[["RNA"]]),
-    query = colnames(assay_list$roi1))
+mypal <- brewer.pal(n = 9, name = "Reds")
 
-imp2 <- imputeEmbedding(
-    assay_list[c('RNA','roi2')],
-    stab$stab[which(stab$mod %in% c('RNA','roi2')),],
-    reference = colnames(assay_list[["RNA"]]),
-    query = colnames(assay_list$roi2))
+g <- 'AQP2'
+plot(roi2$center_x, roi2$center_y, asp=1, cex = .1, main = g,
+     col = colorby(log1p(imp2[g,]), colors = mypal))
+
 
 
 
