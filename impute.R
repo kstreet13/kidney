@@ -48,6 +48,24 @@ g <- 'AQP2'
 plot(roi2$center_x, roi2$center_y, asp=1, cex = .1, main = g,
      col = colorby(log1p(imp2[g,]), colors = mypal))
 
+g <- 'NPHS2'
+plot(roi2$center_x, roi2$center_y, asp=1, pch=19, cex=.25, col = colorby(assay(roi2,'logcounts')[g,], colors = c('white',2,'darkred')),
+     main = paste(g,'- Actual'), axes=FALSE); box()
+
+plot(roi2$center_x, roi2$center_y, asp=1, pch=19, cex=.25, col = colorby(imp2[g,], colors = c('white',4,'darkblue')),
+     main = paste(g,'- Imputed'), axes=FALSE); box()
 
 
+layout(matrix(1:12, nrow=3, byrow = TRUE))
+
+par(mar=c(.5,.5,3,.5))
+for(g in c('NPHS2','SLC12A1','PTPRQ','MECOM','MEIS1','PTPRO')){
+    plot(roi2$center_x, roi2$center_y, asp=1, pch=19, cex=.25, col = colorby(assay(roi2,'logcounts')[g,], colors = c('white',2,'darkred')),
+         main = paste(g,'- Actual'), axes=FALSE); box()
+    
+    plot(roi2$center_x, roi2$center_y, asp=1, pch=19, cex=.25, col = colorby(imp2[g,], colors = c('white',4,'darkblue')),
+         main = paste(g,'- Imputed'), axes=FALSE); box()
+}
+
+par(mar=c(5,4,4,2)+.1)
 
