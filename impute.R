@@ -29,7 +29,7 @@ require(BiocNeighbors)
 require(Matrix); require(matrixStats)
 knn1 <- queryKNN(X = stab$stab[which(stab$mod=='RNA'), ],
                  query = stab$stab[which(stab$mod=='roi1'), ],
-                 k = 3, get.distance = FALSE)
+                 k = 5, get.distance = FALSE)
 imp1 <- apply(knn1$index, 1, function(idx){
     rowMeans(assay_list[['RNA']][,idx])
 })
@@ -37,7 +37,7 @@ imp1 <- apply(knn1$index, 1, function(idx){
 
 knn2 <- queryKNN(X = stab$stab[which(stab$mod=='RNA'), ],
                  query = stab$stab[which(stab$mod=='roi2'), ],
-                 k = 3, get.distance = FALSE)
+                 k = 5, get.distance = FALSE)
 imp2 <- apply(knn2$index, 1, function(idx){
     rowMeans(assay_list[['RNA']][,idx])
 })
