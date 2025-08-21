@@ -138,5 +138,18 @@ peak accessibility as function of PT
 Want to go back and re-run trajectory inference with combined RNA and ATAC
 
 
-
+2025-08-20
+----------
+got good reviews for manuscript
+explicitly asked for mapping single-cell onto spatial
+Nils: the message is about ligand/receptors
+reviewers: what's the receptor for WNT[X]?
+want to look for WNT/receptor co-localization
+have CellChat results (cell type A talks to cell type B)
+if we had clustering on spatial data, could look at co-localization of those clusters
+Connor has new snRNAseq dataset, grabbed cells that match spatial, we also have the small scRNAseq already in the paper
+do the analysis in two streams, take whichever looks better
+hope to use the smaller dataset already in paper
+I just have to do the co-embedding (stabmap), they'll do manual annotation
+Connor will send link to files
 
