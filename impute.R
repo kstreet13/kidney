@@ -27,22 +27,22 @@ stab <- readRDS('data/stabMap_results.rds')
 
 require(BiocNeighbors)
 require(Matrix); require(matrixStats)
-knn1 <- queryKNN(X = stab$stab[which(stab$mod=='RNA'), ],
-                 query = stab$stab[which(stab$mod=='roi1'), ],
+knn1 <- queryKNN(X = stab[which(mod=='RNA'), ],
+                 query = stab[which(mod=='roi1'), ],
                  k = 5, get.distance = FALSE)
 imp1 <- apply(knn1$index, 1, function(idx){
     rowMeans(assay_list[['RNA']][,idx])
 })
 
 
-knn2 <- queryKNN(X = stab$stab[which(stab$mod=='RNA'), ],
-                 query = stab$stab[which(stab$mod=='roi2'), ],
+knn2 <- queryKNN(X = stab[which(mod=='RNA'), ],
+                 query = stab[which(mod=='roi2'), ],
                  k = 5, get.distance = FALSE)
 imp2 <- apply(knn2$index, 1, function(idx){
     rowMeans(assay_list[['RNA']][,idx])
 })
 
-mypal <- brewer.pal(n = 9, name = "Reds")
+tmypal <- brewer.pal(n = 9, name = "Reds")
 
 g <- 'AQP2'
 plot(roi2$center_x, roi2$center_y, asp=1, cex = .1, main = g,
