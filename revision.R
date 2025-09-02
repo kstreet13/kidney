@@ -8,8 +8,8 @@ require(StabMap)
 # SET UP RNA-SEQ DATA #
 #######################
 
-scDataset <- "cuttlefish"
-# scDataset <- "cheese"
+# scDataset <- "cuttlefish"
+scDataset <- "cheese"
 
 if(scDataset == "cuttlefish"){
     sce <- readRDS('data/scRNAseq_rds/Cuttlefish_kidmerge_NE_UE4_allNPC_RV_UE_dp.rds')
