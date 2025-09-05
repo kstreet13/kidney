@@ -1,7 +1,7 @@
 pca <- readRDS('~/Downloads/cheese_pca.rds')
 umap <- readRDS("~/Downloads/cheese_umap_annotated_v2.rds")
 clus2transfer <- umap$banana_celltype
-K <- 3
+K <- 15
 # for clus2transfer, only the scRNAseq labels matter
 
 
@@ -25,6 +25,9 @@ knn <- queryKNN(X = pca[which(assay=='RNA'), ],
 tran <- apply(knn$index, 1, function(idx){
     nnLabels <- clus2transfer[idx]
     tab <- sort(table(nnLabels),decreasing = TRUE)
+    if(length(tab)==1){
+        return(names(tab)[1])
+    }
     if(tab[1] == tab[2]){
         return('unclear')
     }else{
