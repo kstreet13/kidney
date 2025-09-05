@@ -158,7 +158,8 @@ Connor will send link to files
 ----------
 Updates on paper revision
 Connor, Nils, Leonardo Morsut
-
+Running CellChat on RNAseq clusters (to find clusters involved in WNT signaling)
+Transferring labels onto spatial (once we know which ones are talking)
 
 
 
